@@ -23,23 +23,30 @@ import java.util.ListIterator;
 public class SignInActivity extends AppCompatActivity {
     private List<EditText> inputEditText = new ArrayList<EditText>();
     private List<String> signInUserInfo = new ArrayList<String>();
+    private boolean isInputIsValid;
+    private boolean isPasswordAreValid;
+    private boolean isChecked;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         initEditTextList();
-        initStringList();
     }
 
-    private void initEditTextList(){
+    private void initEditTextList() {
+        inputEditText.clear();
         inputEditText.add(findViewById(R.id.editTextName));
         inputEditText.add(findViewById(R.id.editTextGender));
         inputEditText.add(findViewById(R.id.editTextWeight));
         inputEditText.add(findViewById(R.id.editTextAge));
+        initStringList();
     }
 
     private void initStringList() {
+        signInUserInfo.clear();
+
         for (EditText editText: inputEditText){
             String userInput = editText.getText().toString();
 
@@ -49,14 +56,12 @@ public class SignInActivity extends AppCompatActivity {
 
     public void enableGetStartedButton(View view) {
         Switch switchView = findViewById(R.id.switchHealth);
-        Button getStartedButton = findViewById(R.id.buttonGetStarted);
+        initEditTextList();
+        boolean isUserData = checkUserData();
+        boolean isPasswordsMatching = isPasswordMatch();
 
-        if(switchView.isChecked() && checkUserData() && isPasswordMatch())
-        {
-            getStartedButton.setEnabled(true);
-        }
-        else {
-            getStartedButton.setEnabled(false);
+        if(isUserData && isPasswordsMatching && switchView.isChecked()){
+            //continue
         }
     }
 
@@ -66,7 +71,7 @@ public class SignInActivity extends AppCompatActivity {
         for (String input: signInUserInfo) {
             if(input.matches("")){
                 isDataValid = false;
-                Toast toast = Toast.makeText(this, "One Or More Fields Are Missing", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(this, "One Or More Fields Are Missing", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP,0,0);
                 toast.show();
                 break;
@@ -76,18 +81,27 @@ public class SignInActivity extends AppCompatActivity {
         return isDataValid;
     }
 
-    private boolean isPasswordMatch()
-    {
+    private boolean isPasswordMatch() {
         EditText password = findViewById(R.id.editTextPassword);
         EditText passwordVerify = findViewById(R.id.editTextVerifyPassword);
         String passwordString = password.getText().toString();
         String passwordVerifyString = passwordVerify.getText().toString();
-        boolean isPasswordMatch = passwordString == passwordVerifyString;
+        boolean isPasswordMatch = true;
 
-        if(!isPasswordMatch){
-            Toast toast = Toast.makeText(this, "Password Not Matching", Toast.LENGTH_LONG);
+        if(passwordString.matches("") || passwordVerifyString.matches("")) {
+            isPasswordMatch = false;
+            Toast toast = Toast.makeText(this, "Password Not Matching", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.show();
+        }
+        else{
+            isPasswordMatch = passwordString.matches(passwordVerifyString);
+
+            if(!isPasswordMatch){
+                Toast toast = Toast.makeText(this, "Password Not Matching", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.show();
+            }
         }
 
         return isPasswordMatch;
