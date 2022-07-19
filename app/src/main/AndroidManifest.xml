@@ -14,8 +14,12 @@
         android:theme="@style/Theme.GymTracker"
         tools:targetApi="31">
         <activity
-            android:name=".SignInActivity"
+            android:name=".ExercisesActivity"
             android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

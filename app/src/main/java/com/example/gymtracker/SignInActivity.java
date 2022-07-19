@@ -1,32 +1,33 @@
 package com.example.gymtracker;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.ListIterator;
+import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
     private List<EditText> inputEditText = new ArrayList<EditText>();
-    private List<String> signInUserInfo = new ArrayList<String>();
-    private boolean isInputIsValid;
-    private boolean isPasswordAreValid;
-    private boolean isChecked;
-
+    private Map<String,String> signInUserInfo = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +42,19 @@ public class SignInActivity extends AppCompatActivity {
         inputEditText.add(findViewById(R.id.editTextGender));
         inputEditText.add(findViewById(R.id.editTextWeight));
         inputEditText.add(findViewById(R.id.editTextAge));
-        initStringList();
+        initUserInputStringList();
     }
 
-    private void initStringList() {
+    private void initUserInputStringList() {
         signInUserInfo.clear();
+
+        ArrayList<String> titles = new ArrayList<>(Arrays.asList("UserName", "Gender", "Weight", "Age"));
+        int index=0;
 
         for (EditText editText: inputEditText){
             String userInput = editText.getText().toString();
-
-            signInUserInfo.add(userInput);
+            signInUserInfo.put(titles.get(index), userInput);
+            index++;
         }
     }
 
@@ -61,15 +65,15 @@ public class SignInActivity extends AppCompatActivity {
         boolean isPasswordsMatching = isPasswordMatch();
 
         if(isUserData && isPasswordsMatching && switchView.isChecked()){
-            //continue
+
         }
     }
 
     private boolean checkUserData() {
         boolean isDataValid = true;
 
-        for (String input: signInUserInfo) {
-            if(input.matches("")){
+        for (Map.Entry<String, String> input: signInUserInfo.entrySet()) {
+            if(input.getValue().matches("")){
                 isDataValid = false;
                 Toast toast = Toast.makeText(this, "One Or More Fields Are Missing", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP,0,0);
@@ -86,22 +90,15 @@ public class SignInActivity extends AppCompatActivity {
         EditText passwordVerify = findViewById(R.id.editTextVerifyPassword);
         String passwordString = password.getText().toString();
         String passwordVerifyString = passwordVerify.getText().toString();
-        boolean isPasswordMatch = true;
+        boolean isPasswordMatch = passwordString.matches(passwordVerifyString);
 
-        if(passwordString.matches("") || passwordVerifyString.matches("")) {
-            isPasswordMatch = false;
+        if(!isPasswordMatch) {
             Toast toast = Toast.makeText(this, "Password Not Matching", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.show();
         }
         else{
-            isPasswordMatch = passwordString.matches(passwordVerifyString);
-
-            if(!isPasswordMatch){
-                Toast toast = Toast.makeText(this, "Password Not Matching", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 0, 0);
-                toast.show();
-            }
+            signInUserInfo.put("Password", passwordString);
         }
 
         return isPasswordMatch;
