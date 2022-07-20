@@ -2,7 +2,6 @@ package com.example.gymtracker;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.ListMenuItemView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,18 +40,24 @@ public class ExercisesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Integer chosenPicture = pictures.get(i);
                 String chosenName = names.get(i);
-                createExercisesPopup();
+                createExercisesPopup(chosenName, chosenPicture);
             }
         });
     }
 
-    private void createExercisesPopup(){
-        dialogBuilder = new AlertDialog.Builder(this);
+    private void createExercisesPopup(String name, Integer picture){
         View popup = getLayoutInflater().inflate(R.layout.popup, null);
+        TextView machineName = popup.findViewById(R.id.textViewMachineName);
+        ImageView machinePicture = popup.findViewById(R.id.imageViewMachinePicture);
+
+        machineName.setText(name);
+        machinePicture.setImageResource(picture);
+
+        dialogBuilder = new AlertDialog.Builder(this);
+
         dialogBuilder.setView(popup);
         dialog = dialogBuilder.create();
         dialog.show();
-
     }
 
     private void initNamesList(){
