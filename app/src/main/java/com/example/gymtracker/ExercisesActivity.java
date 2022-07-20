@@ -1,5 +1,6 @@
 package com.example.gymtracker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.ListMenuItemView;
 
@@ -17,10 +18,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ExercisesActivity extends AppCompatActivity {
-    ListView listView;
-    List<String> names = new ArrayList<>();
-    List<Integer> pictures = new ArrayList<>();
-    Map<String,Integer> chosenExercises = new HashMap<>();
+    private ListView listView;
+    private List<String> names = new ArrayList<>();
+    private List<Integer> pictures = new ArrayList<>();
+    private Map<String,Integer> chosenExercises = new HashMap<>();
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,18 @@ public class ExercisesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Integer chosenPicture = pictures.get(i);
                 String chosenName = names.get(i);
-
-
-
+                createExercisesPopup();
             }
         });
+    }
+
+    private void createExercisesPopup(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        View popup = getLayoutInflater().inflate(R.layout.popup, null);
+        dialogBuilder.setView(popup);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
     }
 
     private void initNamesList(){
