@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,6 +59,45 @@ public class ExercisesActivity extends AppCompatActivity {
         dialogBuilder.setView(popup);
         dialog = dialogBuilder.create();
         dialog.show();
+
+        SeekBar weightSeekBar = popup.findViewById(R.id.seekBarWeight);
+        TextView weightTextView = popup.findViewById(R.id.textViewCountWeight);
+
+        weightSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                weightTextView.setText("" + progress*10);
+                weightTextView.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar repetitionsSeekBar = popup.findViewById(R.id.seekBarRepetitions);
+        TextView repetitionsTextView = popup.findViewById(R.id.textViewCountRepetitions);
+
+        repetitionsSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                repetitionsTextView.setText("" + progress);
+                repetitionsTextView.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
     }
 
     private void initNamesList(){
