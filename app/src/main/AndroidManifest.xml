@@ -18,8 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
-            android:exported="false"
-            android:parentActivityName=".LoginActivity" />
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

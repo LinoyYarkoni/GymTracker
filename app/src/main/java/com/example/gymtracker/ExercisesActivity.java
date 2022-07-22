@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -50,24 +51,32 @@ public class ExercisesActivity extends AppCompatActivity {
         View popup = getLayoutInflater().inflate(R.layout.popup, null);
         TextView machineName = popup.findViewById(R.id.textViewMachineName);
         ImageView machinePicture = popup.findViewById(R.id.imageViewMachinePicture);
+        Button saveButton = popup.findViewById(R.id.buttonSave);
+        Button cancelButton = popup.findViewById(R.id.buttonCancel);
 
         machineName.setText(name);
         machinePicture.setImageResource(picture);
 
         dialogBuilder = new AlertDialog.Builder(this);
-
         dialogBuilder.setView(popup);
         dialog = dialogBuilder.create();
         dialog.show();
 
         SeekBar weightSeekBar = popup.findViewById(R.id.seekBarWeight);
         TextView weightTextView = popup.findViewById(R.id.textViewCountWeight);
+        seekBarWeightMove(weightSeekBar, weightTextView);
 
+        SeekBar repetitionsSeekBar = popup.findViewById(R.id.seekBarRepetitions);
+        TextView repetitionsTextView = popup.findViewById(R.id.textViewCountRepetitions);
+        seekBarRepetitionsMove(repetitionsSeekBar, repetitionsTextView);
+    }
+
+    private void seekBarWeightMove(SeekBar weightSeekBar, TextView weightTextView){
         weightSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax() - 50;
                 weightTextView.setText("" + progress*10);
                 weightTextView.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
             }
@@ -78,15 +87,14 @@ public class ExercisesActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+    }
 
-        SeekBar repetitionsSeekBar = popup.findViewById(R.id.seekBarRepetitions);
-        TextView repetitionsTextView = popup.findViewById(R.id.textViewCountRepetitions);
-
+    private void seekBarRepetitionsMove(SeekBar repetitionsSeekBar, TextView repetitionsTextView){
         repetitionsSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax()-15;
                 repetitionsTextView.setText("" + progress);
                 repetitionsTextView.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
             }
@@ -97,7 +105,6 @@ public class ExercisesActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
     }
 
     private void initNamesList(){
