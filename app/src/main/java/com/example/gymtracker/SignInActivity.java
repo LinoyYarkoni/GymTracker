@@ -39,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
     private void initEditTextList() {
         inputEditText.clear();
         inputEditText.add(findViewById(R.id.editTextName));
-        inputEditText.add(findViewById(R.id.editTextGender));
+        inputEditText.add(findViewById(R.id.editTextEmail));
         inputEditText.add(findViewById(R.id.editTextWeight));
         inputEditText.add(findViewById(R.id.editTextAge));
         initUserInputStringList();

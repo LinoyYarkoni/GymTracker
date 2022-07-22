@@ -16,7 +16,9 @@
         android:hint="Name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextGender"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,12 +32,14 @@
         android:hint="Verify Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <EditText
-        android:id="@+id/editTextGender"
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -43,6 +47,8 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +63,11 @@
         android:hint="Weight"
         android:inputType="number"
         android:minHeight="48dp"
+        android:drawableStart="@drawable/ic_accessibility"
+        android:drawablePadding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGender" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <EditText
         android:id="@+id/editTextAge"
@@ -70,6 +78,8 @@
         android:hint="Age"
         android:inputType="number"
         android:minHeight="48dp"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawablePadding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -90,6 +100,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
