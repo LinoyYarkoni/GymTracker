@@ -108,7 +108,6 @@ public class ExercisesActivity extends AppCompatActivity {
     }
 
     private void initNamesList(){
-        names.add("Treadmill");
         names.add("Leg Press");
         names.add("Leg Curl");
         names.add("Leg Extension");
@@ -121,7 +120,6 @@ public class ExercisesActivity extends AppCompatActivity {
     }
 
     private void initPicturesList(){
-        pictures.add(R.drawable.treadmill);
         pictures.add(R.drawable.leg_press);
         pictures.add(R.drawable.leg_curl);
         pictures.add(R.drawable.leg_extension);

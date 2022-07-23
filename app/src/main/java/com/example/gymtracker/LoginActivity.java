@@ -5,29 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText userName;
     private EditText userPassword;
-    private Button loginBtn;
-    private Button signUpBtn;
+    private MaterialButton loginBtn;
+    private MaterialButton signUpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userName = findViewById(R.id.editTextTextPersonName);
-        userPassword = findViewById(R.id.editTextPassword);
+        userName = findViewById(R.id.editTextEmailLogin);
+        userPassword = findViewById(R.id.editTextPasswordLogin);
         loginBtn = findViewById(R.id.buttonLogIn);
-        signUpBtn=findViewById(R.id.buttonSignIn);
+        signUpBtn = findViewById(R.id.buttonSignUp);
 
         mAuth = FirebaseAuth.getInstance();
 

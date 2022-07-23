@@ -1,96 +1,90 @@
 package com.example.gymtracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.AuthResult;
 
 public class SignUpActivity extends AppCompatActivity {
-    private List<EditText> inputEditText = new ArrayList<EditText>();
-    private Map<String,String> signInUserInfo = new HashMap<String, String>();
+    private EditText userName;
+    private EditText emailEditText;
+    private EditText weight;
+    private EditText age;
+    private EditText userPassword;
+    private FirebaseAuth mAuth;
+    private AuthResult authResult;
+    private MaterialButton signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        initEditTextList();
-    }
 
-    private void initEditTextList() {
-        inputEditText.clear();
-        inputEditText.add(findViewById(R.id.editTextName));
-        inputEditText.add(findViewById(R.id.editTextEmail));
-        inputEditText.add(findViewById(R.id.editTextWeight));
-        inputEditText.add(findViewById(R.id.editTextAge));
-        initUserInputStringList();
-    }
+        userName = findViewById(R.id.editTextName);
+        emailEditText = findViewById(R.id.editTextEmail);
+        weight = findViewById(R.id.editTextWeight);
+        age = findViewById(R.id.editTextAge);
+        userPassword = findViewById(R.id.editTextPassword);
+        signUp = findViewById(R.id.signUp);
 
-    private void initUserInputStringList() {
-        signInUserInfo.clear();
+        mAuth = FirebaseAuth.getInstance();
 
-        ArrayList<String> titles = new ArrayList<>(Arrays.asList("UserName", "Gender", "Weight", "Age"));
-        int index=0;
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailEditText.getText().toString().trim();
+                String password = userPassword.getText().toString().trim();
+                String name = userName.getText().toString().trim();
 
-        for (EditText editText: inputEditText){
-            String userInput = editText.getText().toString();
-            signInUserInfo.put(titles.get(index), userInput);
-            index++;
-        }
-    }
-
-    public void enableGetStartedButton(View view) {
-        Switch switchView = findViewById(R.id.switchHealth);
-        initEditTextList();
-        boolean isUserData = checkUserData();
-        boolean isPasswordsMatching = isPasswordMatch();
-
-        if(isUserData && isPasswordsMatching && switchView.isChecked()){
-
-        }
-    }
-
-    private boolean checkUserData() {
-        boolean isDataValid = true;
-
-        for (Map.Entry<String, String> input: signInUserInfo.entrySet()) {
-            if(input.getValue().matches("")){
-                isDataValid = false;
-                Toast toast = Toast.makeText(this, "One Or More Fields Are Missing", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP,0,0);
-                toast.show();
-                break;
+                if (email.isEmpty()) {
+                    emailEditText.setError("Email is empty");
+                    emailEditText.requestFocus();
+                    return;
+                }
+                if (name.isEmpty()) {
+                    userName.setError("Name is empty");
+                    userName.requestFocus();
+                    return;
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    emailEditText.setError("Enter the valid email address");
+                    emailEditText.requestFocus();
+                    return;
+                }
+                if (password.isEmpty()) {
+                    userPassword.setError("Enter the password");
+                    userPassword.requestFocus();
+                    return;
+                }
+                if (password.length() < 6) {
+                    userPassword.setError("Length of the password should be more than 6");
+                    userPassword.requestFocus();
+                    return;
+                }
+                // add weight and age if() and switch
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "You are successfully Registered", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "You are not Registered! Try again", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
-        }
-
-        return isDataValid;
-    }
-
-    private boolean isPasswordMatch() {
-        EditText password = findViewById(R.id.editTextPassword);
-        EditText passwordVerify = findViewById(R.id.editTextVerifyPassword);
-        String passwordString = password.getText().toString();
-        String passwordVerifyString = passwordVerify.getText().toString();
-        boolean isPasswordMatch = passwordString.matches(passwordVerifyString);
-
-        if(!isPasswordMatch) {
-            Toast toast = Toast.makeText(this, "Password Not Matching", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP, 0, 0);
-            toast.show();
-        }
-        else{
-            signInUserInfo.put("Password", passwordString);
-        }
-
-        return isPasswordMatch;
+        });
     }
 }
