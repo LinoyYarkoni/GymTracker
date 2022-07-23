@@ -14,8 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent loginIntent = new Intent(this, LoginActivity.class);
-        startActivity(loginIntent);
         TextView welcomeTextView = findViewById(R.id.textViewWelcome);
         welcomeTextView.setText("Welcome ***'s Practice"); // get username from DB
     }
