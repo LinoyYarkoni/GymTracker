@@ -3,11 +3,14 @@ package com.example.gymtracker;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,11 +28,14 @@ public class ExercisesActivity extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
+    private String chosenName;
+    private int chosenWeight;
+    private int chosenRepetitions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
-
         initNamesList();
         initPicturesList();
 
@@ -41,7 +47,7 @@ public class ExercisesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Integer chosenPicture = pictures.get(i);
-                String chosenName = names.get(i);
+                chosenName = names.get(i);
                 createExercisesPopup(chosenName, chosenPicture);
             }
         });
@@ -51,7 +57,7 @@ public class ExercisesActivity extends AppCompatActivity {
         View popup = getLayoutInflater().inflate(R.layout.popup, null);
         TextView machineName = popup.findViewById(R.id.textViewMachineName);
         ImageView machinePicture = popup.findViewById(R.id.imageViewMachinePicture);
-        Button saveButton = popup.findViewById(R.id.buttonSave);
+        Button addButton = popup.findViewById(R.id.buttonAdd);
         Button cancelButton = popup.findViewById(R.id.buttonCancel);
 
         machineName.setText(name);
@@ -79,6 +85,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax() - 50;
                 weightTextView.setText("" + progress*10);
                 weightTextView.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                chosenWeight = progress*10;
             }
 
             @Override
@@ -97,6 +104,7 @@ public class ExercisesActivity extends AppCompatActivity {
                 int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax()-15;
                 repetitionsTextView.setText("" + progress);
                 repetitionsTextView.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                chosenRepetitions = progress;
             }
 
             @Override

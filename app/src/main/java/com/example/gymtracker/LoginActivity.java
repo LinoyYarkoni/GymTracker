@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private EditText userName;
+    private EditText userEmail;
     private EditText userPassword;
     private MaterialButton loginBtn;
     private MaterialButton signUpBtn;
@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userName = findViewById(R.id.editTextEmailLogin);
+        userEmail = findViewById(R.id.editTextEmailLogin);
         userPassword = findViewById(R.id.editTextPasswordLogin);
         loginBtn = findViewById(R.id.buttonLogIn);
         signUpBtn = findViewById(R.id.buttonSignUp);
@@ -31,18 +31,18 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(v -> {
-            String email = userName.getText().toString().trim();
+            String email = userEmail.getText().toString().trim();
             String password = userPassword.getText().toString().trim();
             if(email.isEmpty())
             {
-                userName.setError("Email is empty");
-                userName.requestFocus();
+                userEmail.setError("Email is empty");
+                userEmail.requestFocus();
                 return;
             }
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
             {
-                userName.setError("Enter the valid email");
-                userName.requestFocus();
+                userEmail.setError("Enter the valid email");
+                userEmail.requestFocus();
                 return;
             }
             if(password.isEmpty())
