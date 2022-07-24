@@ -75,6 +75,14 @@ public class ExercisesActivity extends AppCompatActivity {
         SeekBar repetitionsSeekBar = popup.findViewById(R.id.seekBarRepetitions);
         TextView repetitionsTextView = popup.findViewById(R.id.textViewCountRepetitions);
         seekBarRepetitionsMove(repetitionsSeekBar, repetitionsTextView);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void seekBarWeightMove(SeekBar weightSeekBar, TextView weightTextView){
