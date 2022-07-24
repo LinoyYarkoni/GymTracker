@@ -7,12 +7,12 @@
 
     <TextView
         android:id="@+id/textViewMachineName"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Machine Name"
-        android:text=""
-        style="@style/TextAppearance.AppCompat.Title"
+        android:hint="@string/machineName"
+        android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,14 +26,15 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewMachineName"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textViewHMWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="192dp"
-        android:text="How Much Weight ?"
+        android:text="@string/howMuchWeight"
         style="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -46,7 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="252dp"
-        android:hint="Count Weight"
+        android:hint="@string/countWeight"
+        android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="364dp"
-        android:text="How Many Repetitions ?"
+        android:text="@string/howMuchRepetitions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="412dp"
-        android:hint="Count Repetitions"
+        android:hint="@string/countRepetitions"
+        android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,8 +114,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/custom_button"
-        android:onClick="addExercise"
-        android:text="add"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -128,14 +130,11 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/custom_button"
-        android:onClick="cancel"
-        android:text="cancel"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toEndOf="@+id/buttonAdd"
         app:layout_constraintTop_toBottomOf="@+id/seekBarRepetitions"
         app:layout_constraintVertical_bias="0.092" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

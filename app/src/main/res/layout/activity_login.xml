@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".LoginActivity">
 
     <EditText
@@ -16,7 +15,7 @@
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="12dp"
@@ -33,12 +32,11 @@
         android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:background="@drawable/custom_edittext"
         android:paddingStart="12dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +46,7 @@
         android:id="@+id/textViewAccountMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't Have an Account ?"
+        android:text="@string/dontHaveAnAccount"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +59,7 @@
         android:id="@+id/buttonSignUpLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sign up"
+        android:text="@string/signUp"
         android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
-        android:text="log in"
+        android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/textViewAccountMsg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -90,4 +88,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/textViewTitleLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginBottom="164dp"
+        android:text="@string/gymTracker"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/design_default_color_primary"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewLogoLogin"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewLogoLogin"
+        app:layout_constraintStart_toStartOf="@+id/imageViewLogoLogin"
+        app:layout_constraintTop_toTopOf="@+id/imageViewLogoLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

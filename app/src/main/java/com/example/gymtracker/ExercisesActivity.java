@@ -3,8 +3,6 @@ package com.example.gymtracker;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,21 +14,20 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ExercisesActivity extends AppCompatActivity {
     private ListView listView;
     private List<String> names = new ArrayList<>();
     private List<Integer> pictures = new ArrayList<>();
-    private Map<String,Integer> chosenExercises = new HashMap<>();
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
     private String chosenName;
     private int chosenWeight;
     private int chosenRepetitions;
+
+    private LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +40,10 @@ public class ExercisesActivity extends AppCompatActivity {
         ListViewAdapter listViewAdapter = new ListViewAdapter(ExercisesActivity.this, names, pictures);
         listView.setAdapter(listViewAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Integer chosenPicture = pictures.get(i);
-                chosenName = names.get(i);
-                createExercisesPopup(chosenName, chosenPicture);
-            }
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Integer chosenPicture = pictures.get(i);
+            chosenName = names.get(i);
+            createExercisesPopup(chosenName, chosenPicture);
         });
     }
 
@@ -76,13 +70,29 @@ public class ExercisesActivity extends AppCompatActivity {
         TextView repetitionsTextView = popup.findViewById(R.id.textViewCountRepetitions);
         seekBarRepetitionsMove(repetitionsSeekBar, repetitionsTextView);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), MainActivity.class);
-                startActivity(i);
-            }
+        layout = MainActivity.sMainActivity.findViewById(R.id.container);
+
+        addButton.setOnClickListener(view -> {
+            String title = String.format("%s\n%s: %s\n%s: %s", chosenName, getText(R.string.weight), chosenWeight, getText(R.string.repetitions), chosenRepetitions);
+            addCard(title);
+            finish();
         });
+
+        cancelButton.setOnClickListener(view -> dialog.dismiss());
+    }
+    private void addCard(String title){
+        View viewCard = getLayoutInflater().inflate(R.layout.card, null);
+        TextView textViewTitle = viewCard.findViewById(R.id.name);
+        Button buttonDelete = viewCard.findViewById(R.id.delete);
+
+        textViewTitle.setText(title);
+        buttonDelete.setOnClickListener(v -> layout.removeView(viewCard));
+
+        if (layout == null){
+            layout = MainActivity.sMainActivity.findViewById(R.id.container);
+        }
+
+        layout.addView(viewCard);
     }
 
     private void seekBarWeightMove(SeekBar weightSeekBar, TextView weightTextView){
@@ -124,7 +134,6 @@ public class ExercisesActivity extends AppCompatActivity {
     }
 
     private void initNamesList(){
-        names.add("Treadmill");
         names.add("Leg Press");
         names.add("Leg Curl");
         names.add("Leg Extension");
@@ -137,7 +146,6 @@ public class ExercisesActivity extends AppCompatActivity {
     }
 
     private void initPicturesList(){
-        pictures.add(R.drawable.treadmill);
         pictures.add(R.drawable.leg_press);
         pictures.add(R.drawable.leg_curl);
         pictures.add(R.drawable.leg_extension);

@@ -36,37 +36,37 @@ public class LoginActivity extends AppCompatActivity {
             String password = userPasswordLogin.getText().toString().trim();
             if(email.isEmpty())
             {
-                userEmailLogin.setError("Email is empty");
+                userEmailLogin.setError(getText(R.string.emailEmpty));
                 userEmailLogin.requestFocus();
                 return;
             }
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
             {
-                userEmailLogin.setError("Enter the valid email");
+                userEmailLogin.setError(getText(R.string.enterValidEmail));
                 userEmailLogin.requestFocus();
                 return;
             }
             if(password.isEmpty())
             {
-                userPasswordLogin.setError("Password is empty");
+                userPasswordLogin.setError(getText(R.string.passwordEmpty));
                 userPasswordLogin.requestFocus();
                 return;
             }
             if(password.length()<6)
             {
-                userPasswordLogin.setError("Length of password is more than 6");
+                userPasswordLogin.setError(getText(R.string.passwordLength));
                 userPasswordLogin.requestFocus();
                 return;
             }
             mAuthLogin.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(LoginActivity.this, "Connected!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.connected, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Please Check Your login Credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.checkCredentials, Toast.LENGTH_SHORT).show();
                 }
 
             });

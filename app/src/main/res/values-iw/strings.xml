@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GymTracker</string>
+    <string name="howMuchRepetitions">כמה חזרות ?</string>
+    <string name="machineName">שם המכשיר</string>
+    <string name="howMuchWeight">כמה משקל ?</string>
+    <string name="countWeight">משקל</string>
+    <string name="countRepetitions">חזרות</string>
+    <string name="add">הוסף</string>
+    <string name="cancel">ביטול</string>
+    <string name="name">שם</string>
+    <string name="email">אימייל</string>
+    <string name="weight">משקל</string>
+    <string name="age">גיל</string>
+    <string name="password">סיסמא</string>
+    <string name="healthProblems">אין לי בעיות בריאותיות</string>
+    <string name="signUp">הרשמה</string>
+    <string name="addNewExe">הוסיף תרגיל חדש</string>
+    <string name="done">סיים</string>
+    <string name="login">התחבר</string>
+    <string name="dontHaveAnAccount">אין לך חשבון ?</string>
+    <string name="delete">מחק</string>
+    <string name="connected">מחובר!</string>
+    <string name="checkCredentials">בדוק את פרטי החיבור שלך</string>
+    <string name="emailEmpty">אין ערך בשדה אימייל</string>
+    <string name="enterValidEmail">הכנס מייל תקין</string>
+    <string name="passwordEmpty">הכנס ססמא</string>
+    <string name="passwordLength">אורך הססמא צריך להיות לפחות 6 תווים</string>
+    <string name="repetitions">חזרות</string>
+    <string name="registered">נרשמת בהצלחה</string>
+    <string name="notRegister">לא הצלחת להתחבר, נסה שוב</string>
+</resources>
