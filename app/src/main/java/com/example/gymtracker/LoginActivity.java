@@ -5,59 +5,60 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private EditText userEmail;
-    private EditText userPassword;
-    private MaterialButton loginBtn;
-    private MaterialButton signUpBtn;
+    private FirebaseAuth mAuthLogin;
+    private EditText userEmailLogin;
+    private EditText userPasswordLogin;
+    private Button loginBtn;
+    private Button signUpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userEmail = findViewById(R.id.editTextEmailLogin);
-        userPassword = findViewById(R.id.editTextPasswordLogin);
-        loginBtn = findViewById(R.id.buttonLogIn);
-        signUpBtn = findViewById(R.id.buttonSignUp);
+        userEmailLogin = findViewById(R.id.editTextEmailLogin);
+        userPasswordLogin = findViewById(R.id.editTextPasswordLogin);
+        loginBtn = findViewById(R.id.buttonLogInLogin);
+        signUpBtn=findViewById(R.id.buttonSignUpLogin);
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuthLogin = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(v -> {
-            String email = userEmail.getText().toString().trim();
-            String password = userPassword.getText().toString().trim();
+            String email = userEmailLogin.getText().toString().trim();
+            String password = userPasswordLogin.getText().toString().trim();
             if(email.isEmpty())
             {
-                userEmail.setError("Email is empty");
-                userEmail.requestFocus();
+                userEmailLogin.setError("Email is empty");
+                userEmailLogin.requestFocus();
                 return;
             }
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
             {
-                userEmail.setError("Enter the valid email");
-                userEmail.requestFocus();
+                userEmailLogin.setError("Enter the valid email");
+                userEmailLogin.requestFocus();
                 return;
             }
             if(password.isEmpty())
             {
-                userPassword.setError("Password is empty");
-                userPassword.requestFocus();
+                userPasswordLogin.setError("Password is empty");
+                userPasswordLogin.requestFocus();
                 return;
             }
             if(password.length()<6)
             {
-                userPassword.setError("Length of password is more than 6");
-                userPassword.requestFocus();
+                userPasswordLogin.setError("Length of password is more than 6");
+                userPasswordLogin.requestFocus();
                 return;
             }
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+            mAuthLogin.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                 if(task.isSuccessful())
                 {
                     Toast.makeText(LoginActivity.this, "Connected!", Toast.LENGTH_SHORT).show();
@@ -72,5 +73,4 @@ public class LoginActivity extends AppCompatActivity {
         });
         signUpBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,SignUpActivity.class)));
     }
-
 }
