@@ -2,15 +2,21 @@ package com.example.gymtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Patterns;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuthLogin;
@@ -18,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userPasswordLogin;
     private Button loginBtn;
     private Button signUpBtn;
+    private Button languageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         userPasswordLogin = findViewById(R.id.editTextPasswordLogin);
         loginBtn = findViewById(R.id.buttonLogInLogin);
         signUpBtn=findViewById(R.id.buttonSignUpLogin);
+        languageBtn=findViewById(R.id.buttonLanguageLogin);
 
         mAuthLogin = FirebaseAuth.getInstance();
 
@@ -72,5 +80,26 @@ public class LoginActivity extends AppCompatActivity {
             });
         });
         signUpBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,SignUpActivity.class)));
+
+        languageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Locale.getDefault().getLanguage() == "en"){
+                    setLocal("iw");
+                }
+                else{
+                    setLocal("en");
+                }
+                recreate();
+            }
+        });
+    }
+
+    private void setLocal(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 }

@@ -26,6 +26,7 @@
     <string name="gymTracker" translatable="false">Gym Tracker</string>
     <string name="login">LOG IN</string>
     <string name="dontHaveAnAccount">Don\'t Have an Account ?</string>
+    <string name="language">language</string>
 
 <!--card-->
     <string name="delete">DELETE</string>
@@ -44,7 +45,6 @@
 <!--toast-->
     <string name="connected">Connected!</string>
     <string name="checkCredentials">Please Check Your login Credentials</string>
-
     <string name="emailEmpty">Email is empty!</string>
     <string name="enterValidEmail">Enter the valid email</string>
     <string name="passwordEmpty">Password is empty</string>
