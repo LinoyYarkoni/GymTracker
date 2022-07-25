@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">GymTracker</string>
-<!--popup-->
     <string name="machineName">Machine Name</string>
     <string name="howMuchWeight">How Much Weight ?</string>
     <string name="countWeight">Count Weight</string>
@@ -8,8 +7,6 @@
     <string name="countRepetitions">Count Repetitions</string>
     <string name="add">ADD</string>
     <string name="cancel">CANCEL</string>
-
-<!--sign up-->
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="weight">Weight</string>
@@ -17,21 +14,17 @@
     <string name="password">Password</string>
     <string name="healthProblems">I do not have Health Problems</string>
     <string name="signUp">SIGN UP</string>
-
-<!--main activity-->
+    <string name="nameIsEmpty">Name is empty!</string>
+    <string name="weightIsEmpty">Weight is empty!</string>
+    <string name="ageIsEmpty">Age is empty!</string>
+    <string name="healthConfirm">Please confirm</string>
     <string name="addNewExe">ADD NEW EXERCISES</string>
     <string name="done">DONE</string>
-
-<!--login-->
     <string name="gymTracker" translatable="false">Gym Tracker</string>
     <string name="login">LOG IN</string>
     <string name="dontHaveAnAccount">Don\'t Have an Account ?</string>
     <string name="language">language</string>
-
-<!--card-->
     <string name="delete">DELETE</string>
-
-<!--machines name-->
     <string name="legPress" translatable="false">Leg Press</string>
     <string name="legCurl" translatable="false">Leg Curl</string>
     <string name="legExtension" translatable="false">Leg Extension</string>
@@ -41,8 +34,6 @@
     <string name="armAdduction" translatable="false">Arm Adduction</string>
     <string name="armCurl" translatable="false">Arm Curl</string>
     <string name="armExtension" translatable="false">Arm Extension</string>
-
-<!--toast-->
     <string name="connected">Connected!</string>
     <string name="checkCredentials">Please Check Your login Credentials</string>
     <string name="emailEmpty">Email is empty!</string>

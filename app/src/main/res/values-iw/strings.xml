@@ -30,4 +30,8 @@
     <string name="registered">נרשמת בהצלחה</string>
     <string name="notRegister">לא הצלחת להתחבר, נסה שוב</string>
     <string name="language">שפה</string>
+    <string name="nameIsEmpty">אין ערך בשדה שם!</string>
+    <string name="weightIsEmpty">אין ערך בשדה משקל!</string>
+    <string name="ageIsEmpty">איך ערך בשדה גיל!</string>
+    <string name="a">נא אשר</string>
 </resources>

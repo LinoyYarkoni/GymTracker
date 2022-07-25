@@ -42,38 +42,32 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(v -> {
             String email = userEmailLogin.getText().toString().trim();
             String password = userPasswordLogin.getText().toString().trim();
-            if(email.isEmpty())
-            {
+            if(email.isEmpty()) {
                 userEmailLogin.setError(getText(R.string.emailEmpty));
                 userEmailLogin.requestFocus();
                 return;
             }
-            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-            {
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 userEmailLogin.setError(getText(R.string.enterValidEmail));
                 userEmailLogin.requestFocus();
                 return;
             }
-            if(password.isEmpty())
-            {
+            if(password.isEmpty()) {
                 userPasswordLogin.setError(getText(R.string.passwordEmpty));
                 userPasswordLogin.requestFocus();
                 return;
             }
-            if(password.length()<6)
-            {
+            if(password.length()<6) {
                 userPasswordLogin.setError(getText(R.string.passwordLength));
                 userPasswordLogin.requestFocus();
                 return;
             }
             mAuthLogin.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                if(task.isSuccessful())
-                {
+                if(task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, R.string.connected, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
-                else
-                {
+                else {
                     Toast.makeText(LoginActivity.this, R.string.checkCredentials, Toast.LENGTH_SHORT).show();
                 }
 
@@ -81,17 +75,15 @@ public class LoginActivity extends AppCompatActivity {
         });
         signUpBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,SignUpActivity.class)));
 
-        languageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Locale.getDefault().getLanguage() == "en"){
-                    setLocal("iw");
-                }
-                else{
-                    setLocal("en");
-                }
-                recreate();
+        languageBtn.setOnClickListener(view -> {
+            if(Locale.getDefault().getLanguage() == "en"){
+                setLocal("iw");
             }
+            else{
+                setLocal("en");
+            }
+
+            recreate();
         });
     }
 
