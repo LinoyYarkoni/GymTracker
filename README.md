@@ -8,7 +8,7 @@
 
 #### To sign up for the application, enter username, email, age and password
 ![image](https://user-images.githubusercontent.com/85076725/183270388-9914c177-3bd6-4812-a943-9c8a046e8d4e.png)
-Authenticates by Firebase Authentication
+#### Authenticates by Firebase Authentication
 
 ## Menu of machines:
 #### Chose the machine you wish to use from the menu:
