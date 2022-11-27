@@ -24,4 +24,4 @@ Authenticates by Firebase Authentication
 
 ## Notes:
 - The app available in English and Hebrew
-- The scoreboard saves your score until the app is completely closes.
+- The practice deleted when the app closes.
