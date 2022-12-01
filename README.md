@@ -1,6 +1,6 @@
 # GymTracker
 
-### This app uses for tracking you gym sessions
+### This Android applictaion uses for tracking you gym sessions
 
 ## Login and Sign Up:
 #### For login enter your email and password
