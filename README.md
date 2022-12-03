@@ -1,6 +1,6 @@
 # GymTracker
 
-### Android (Java) application used for tracking your gym sessions, user registration and authentication by Firebase Authentication
+### Android (Java) application used for tracking your gym sessions, user registration and authentication managed by Firebase Authentication
 
 ## Login and Sign Up:
 #### For login enter your email and password
