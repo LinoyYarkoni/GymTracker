@@ -1,6 +1,7 @@
 # GymTracker
 
-### Android (Java) application used for tracking your gym sessions, user registration and authentication managed by Firebase Authentication
+### Android (Java) application used for tracking your gym sessions.
+### User registration and authentication managed by Firebase Authentication
 
 ## Login and Sign Up:
 #### For login enter your email and password
@@ -14,7 +15,7 @@
 ![image](https://user-images.githubusercontent.com/85076725/183270402-68710f4b-6afe-47e7-ad9b-6bc2941e3cb5.png)
 
 ## Machine details:
-### After you choose the machine, enter the weight and the repetitions
+### After you choose a machine, enter the weight and the repetitions.
 ![image](https://user-images.githubusercontent.com/85076725/183270412-379563b6-025e-46ae-9a7f-c7f18bd41b46.png)
 
 ## Practice status:
@@ -22,5 +23,5 @@
 ![image](https://user-images.githubusercontent.com/85076725/183270440-9c832dad-5257-4d49-8179-7526ac2f13c3.png)
 
 ## Notes:
-- The app available in English and Hebrew
-- The practice deleted when the app closes.
+- The app available in English and Hebrew.
+- The practice is deleted when the app closes.
